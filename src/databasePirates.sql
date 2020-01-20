@@ -1,4 +1,4 @@
-use Simulator;
+create database Simulator;
 
 create table  Ships (name varchar(20), maxWeight int(3), currentWeight int(3), 
                     maxSpeed int(2), cruiseSpeed int(2), position varchar(20),
