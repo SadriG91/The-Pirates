@@ -7,8 +7,19 @@ public class Database {
 		return JOptionPane.showInputDialog(null, "Enter username", "Username", JOptionPane.QUESTION_MESSAGE);
 	}
 
-	static String loginPassword(){
-		return JOptionPane.showInputDialog(null, "Enter password", "Password", JOptionPane.QUESTION_MESSAGE);
+	static String loginPassword() {
+		JPasswordField passwordField = new JPasswordField(10);
+		passwordField.setEchoChar('*');
+		JPanel myPanel = new JPanel();
+		myPanel.add(new JLabel("Password: "));
+		myPanel.add(passwordField);
+
+		int result = JOptionPane.showConfirmDialog(null, myPanel, "Enter Password", JOptionPane.OK_CANCEL_OPTION);
+		if (result == JOptionPane.OK_OPTION) {
+			return String.valueOf(passwordField.getPassword());
+		}
+		return null;
+
 	}
 
 public static void createConnection() {
