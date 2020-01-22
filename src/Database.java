@@ -1,46 +1,70 @@
 import javax.swing.*;
 import java.sql.*;
+import java.util.Objects;
 
 public class Database {
 
-	static String loginUsername(){
-		return JOptionPane.showInputDialog(null, "Enter username", "Username", JOptionPane.QUESTION_MESSAGE);
+	private static String username;
+	private static String password;
+
+	static void loginUsername(){
+		username = JOptionPane.showInputDialog(null, "Enter username", "Username", JOptionPane.QUESTION_MESSAGE);
+		//return username;
 	}
 
-	static String loginPassword() {
+public static void loginPassword() {
 		JPasswordField passwordField = new JPasswordField(10);
 		passwordField.setEchoChar('*');
+		passwordField.getCursor();
 		JPanel myPanel = new JPanel();
 		myPanel.add(new JLabel("Password: "));
 		myPanel.add(passwordField);
 
 		int result = JOptionPane.showConfirmDialog(null, myPanel, "Enter Password", JOptionPane.OK_CANCEL_OPTION);
 		if (result == JOptionPane.OK_OPTION) {
-			return String.valueOf(passwordField.getPassword());
+			password = String.valueOf(passwordField.getPassword());
+			//return password;
 		}
-		return null;
+		//return null;
 
 	}
 
-public static void createConnection() {
+public static Connection createConnection() {
+//boolean connected ;
 	try {
-		Connection myConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/simulator", loginUsername(), loginPassword() );
+		return DriverManager.getConnection("jdbc:mysql://localhost:3306/simulator", username, password);
 
-		Statement myStatement = myConnection.createStatement();
-
-		ResultSet myRs = myStatement.executeQuery("SELECT * FROM simulator.ships;");
-
-		while (myRs.next()){
-			System.out.println(myRs.getString("name"));
-		}
-	}
-	catch (SQLException e) {
+	} catch (SQLException e) {
 		e.printStackTrace();
 	}
+//	connected = true;
+	return null;
 
 }
+
+
+		public static void statement(String query) {
+			{
+				try {
+					Statement myStatement = Objects.requireNonNull(createConnection()).createStatement();
+					ResultSet myRs = myStatement.executeQuery(query);
+					while (myRs.next()) {
+						System.out.println(myRs.getString("name"));
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+
+		}
+
+
+
 public static void main (String[] args){
+		loginUsername();
+		loginPassword();
 		createConnection();
+		statement("Select * from ships");
 
 }
 
