@@ -40,8 +40,6 @@ public static void createConnection() {
 
 }
 public static void main (String[] args){
-		//Database.loginUsername();
-		//Database.loginPassword();
 		createConnection();
 
 }
