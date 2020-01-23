@@ -22,7 +22,7 @@ public class Main {
         String myString8 = "select * from ships where name = 'RotterdamGreen'";
         String myString9 = "select * from ships where name = 'HamburgSud'";
         String myString10 = "select * from ships where name = 'OceansExpress'";
-
+        List<Ship> shipList = new ArrayList<Ship>();
         Ship JC = (Ship) Database.createShip(stmt, myString1);
         Objects.requireNonNull(JC).setPathNumber(1);
         Ship MR = (Ship) Database.createShip(stmt, myString2);
@@ -43,7 +43,16 @@ public class Main {
         Objects.requireNonNull(HS).setPathNumber(9);
         Ship OE = (Ship) Database.createShip(stmt, myString10);
         Objects.requireNonNull(OE).setPathNumber(10);
-
+        shipList.add(JC);
+        shipList.add(MR);
+        shipList.add(AS);
+        shipList.add(NE);
+        shipList.add(FE);
+        shipList.add(EG);
+        shipList.add(CE);
+        shipList.add(RG);
+        shipList.add(HS);
+        shipList.add(OE);
         JC.start();
         MR.start();
         AS.start();
@@ -55,18 +64,6 @@ public class Main {
         HS.start();
         OE.start();
 
-        List<Object> shipList = new ArrayList<Object>();
-
-        shipList.add(JC);
-        shipList.add(MR);
-        shipList.add(AS);
-        shipList.add(NE);
-        shipList.add(FE);
-        shipList.add(EG);
-        shipList.add(CE);
-        shipList.add(RG);
-        shipList.add(HS);
-        shipList.add(OE);
         boolean run = true;
         while (run) {
             Scanner userInput = new Scanner(System.in);
@@ -90,15 +87,12 @@ public class Main {
                 Ship object1 = (Ship) shipList.get(0);
                 int x1 = object1.getX();
                 int y1 = object1.getY();
-                object1.start();
                 Ship object2 = (Ship) shipList.get(1);
                 int x2 = object2.getX();
                 int y2 = object2.getY();
-                object2.start();
                 Ship object3 = (Ship) shipList.get(2);
                 int x3 = object3.getX();
                 int y3 = object3.getY();
-                object3.start();
                 Ship object4 = (Ship) shipList.get(3);
                 int x4 = object4.getX();
                 int y4 = object4.getY();
