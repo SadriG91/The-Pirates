@@ -1,28 +1,29 @@
+import javax.swing.*;
 import java.sql.*;
 
 public class Database {
-	/*
-	 * private static String username; private static String password;
-	 * 
-	 * static void loginUsername() { username = JOptionPane.showInputDialog(null,
-	 * "Enter username", "Username", JOptionPane.QUESTION_MESSAGE); // return
-	 * username; }
-	 * 
-	 * public static void loginPassword() { JPasswordField passwordField = new
-	 * JPasswordField(10); passwordField.setEchoChar('*'); JPanel myPanel = new
-	 * JPanel(); myPanel.add(new JLabel("Password: ")); myPanel.add(passwordField);
-	 * 
-	 * int result = JOptionPane.showConfirmDialog(null, myPanel, "Enter Password",
-	 * JOptionPane.OK_CANCEL_OPTION); if (result == JOptionPane.OK_OPTION) {
-	 * password = String.valueOf(passwordField.getPassword()); // return password; }
-	 * // return null;
-	 * 
-	 * }
-	 */
+
+	  private static String username; private static String password;
+
+	  static void loginUsername() { username = JOptionPane.showInputDialog(null,
+	  "Enter username", "Username", JOptionPane.QUESTION_MESSAGE);
+	  }
+
+	  public static void loginPassword() {
+	  JPasswordField passwordField = new JPasswordField(10); passwordField.setEchoChar('*'); JPanel myPanel = new
+	  JPanel(); myPanel.add(new JLabel("Password: "));
+	  myPanel.add(passwordField);
+
+	  int result = JOptionPane.showConfirmDialog(null, myPanel, "Enter Password", JOptionPane.OK_CANCEL_OPTION);
+	  if (result == JOptionPane.OK_OPTION) {
+	  password = String.valueOf(passwordField.getPassword());}
+
+	 }
+
 	public static Connection createConnection() {
 		// boolean connected ;
 		try {
-			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/simulator", "root", "0011291.sS");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/simulator", username, password);
 			return conn;
 
 		} catch (SQLException e) {
