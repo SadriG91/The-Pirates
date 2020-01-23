@@ -88,7 +88,7 @@ public static Connection createConnection() {
 				int _order_id= myRs.getInt("order_id");
 				boolean _in_harbor= myRs.getBoolean("in_harbor");
 				String _harborName= myRs.getString("harborName");
-				Ship myNewShip = new Ship(_name,_maxWeight,_currentWeight,_maxSpeed,_cruiseSpeed,_x,_y,_destination,_order_id,_in_harbor,_harborName);
+				Ship myNewShip = new Ship(_name,_maxWeight,_currentWeight,_maxSpeed,_cruiseSpeed,_x,_y,_destination,_order_id,_in_harbor,_harborName, 0);
 				System.out.println(myNewShip.getX());
 
 
@@ -101,7 +101,7 @@ public static Connection createConnection() {
 		public void updateDatabase(Object myNewShip) throws SQLException {
 		String updateQuery = "update simulator.ships set position_x=?, position_y=?, currentWeight=?, order_id=?, in_harbor=?, harborName=? where name = ?";
 		PreparedStatement preparedStatement = createConnection().prepareStatement(updateQuery);
-		preparedStatement.setInt(1, myNewShip);
+		preparedStatement.setInt(1, myNewShip.);
 		)
 		}
 
