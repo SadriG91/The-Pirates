@@ -3,6 +3,8 @@ import javax.swing.*;
 import com.mysql.jdbc.ResultSetImpl;
 import java.sql.*;
 import java.util.Objects;
+import java.util.List;
+import java.util.ArrayList;
 
 public class Main {
 
@@ -54,6 +56,14 @@ public class Main {
             }
 
         }
+
+    }
+
+    public static String selectShip() {
+        Scanner kb = new Scanner(System.in);
+        System.out.println("enter shipname:");
+        String shipChoice = kb.nextLine();
+        return shipChoice;
 
     }
 
