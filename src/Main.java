@@ -3,6 +3,8 @@ import javax.swing.*;
 import com.mysql.jdbc.ResultSetImpl;
 import java.sql.*;
 import java.util.Objects;
+import java.util.List;
+import java.util.ArrayList;
 
 public class Main {
 
@@ -67,6 +69,40 @@ public class Main {
             try {Thread.sleep(1200);} catch (Exception e) {e.printStackTrace();} }
 
     }
+        List<Object> shipList = new ArrayList<Object>();
+
+        shipList.add(JC);
+        shipList.add(MR);
+        shipList.add(AS);
+        shipList.add(NE);
+        shipList.add(FE);
+        shipList.add(EG);
+        shipList.add(CE);
+        shipList.add(RG);
+        shipList.add(HS);
+        shipList.add(OE);
+
+        String shipChoice = Main.selectShip();
+
+        for (int i = 0; i < shipList.size(); i++) {
+            Ship object = (Ship) shipList.get(i);
+            if (object.getName().equals(shipChoice)) {
+                System.out.println("det funkade");
+                System.out.println(object);
+            }
+
+        }
+
+    }
+
+    public static String selectShip() {
+        Scanner kb = new Scanner(System.in);
+        System.out.println("enter shipname:");
+        String shipChoice = kb.nextLine();
+        return shipChoice;
+
+    }
+
     public void runMenu() {
         printHeader();
         //boolean exit = false;
