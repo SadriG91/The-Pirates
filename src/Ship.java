@@ -31,6 +31,14 @@ class Ship implements Runnable {
 
     }
 
+    public int getPathNumber() {
+        return pathNumber;
+    }
+
+    public void setPathNumber(int pathNumber) {
+        this.pathNumber = pathNumber;
+    }
+
     public void printInfo() {
         String info = "Name: " + this.getName() + " position: " + this.getX() + "," + this.getY() + " currentload: "
                 + this.getCurrentWeight() + "tons";
@@ -125,9 +133,9 @@ class Ship implements Runnable {
 
     public void run() {
         try {
-            route(x, y, 1, 1000);
+            route(x, y, pathNumber, cruiseSpeed);
         } catch (InterruptedException e) {
-
+            e.printStackTrace();
         }
     }
 

@@ -1,9 +1,4 @@
-import javax.swing.*;
-
-import com.mysql.jdbc.ResultSetImpl;
-
 import java.sql.*;
-import java.util.Objects;
 
 public class Database {
 	/*
@@ -27,7 +22,7 @@ public class Database {
 	public static Connection createConnection() {
 		// boolean connected ;
 		try {
-			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/simulator", "root", "Memis6991");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/simulator", "root", "0011291.sS");
 			return conn;
 
 		} catch (SQLException e) {
@@ -59,8 +54,9 @@ public class Database {
 			int _order_id = myRs.getInt("order_id");
 			boolean _in_harbor = myRs.getBoolean("in_harbor");
 			String _harborName = myRs.getString("harborName");
+			int _pathNumber = myRs.getInt("pathNumber");
 			Ship myNewShip = new Ship(_name, _maxWeight, _currentWeight, _maxSpeed, _cruiseSpeed, _x, _y, _destination,
-					_order_id, _in_harbor, _harborName, 0);
+					_order_id, _in_harbor, _harborName, _pathNumber);
 			return myNewShip;
 			// System.out.println(myNewShip);
 

@@ -38,3 +38,11 @@ VALUES  (100, 'A', 'B', null, 15),
         (104, 'A', 'B', null, 9),
         (105, 'A', 'B', null, 7);
 
+alter table ships add column pathNumber int;
+update  ships set cruiseSpeed = 3000 where cruiseSpeed = 10;
+update  ships set cruiseSpeed = 2000 where cruiseSpeed = 15;
+update  ships set cruiseSpeed = 2300 where cruiseSpeed = 13;
+update  ships set cruiseSpeed = 1500 where cruiseSpeed = 20;
+update  ships set cruiseSpeed = 2500 where cruiseSpeed = 12;
+update  ships set cruiseSpeed = 2142 where cruiseSpeed = 14;
+
