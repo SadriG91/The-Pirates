@@ -5,18 +5,18 @@ class Ship implements Runnable {
     final private int maxWeight;
     private int currentWeight;
     final private int maxSpeed;
-    private int cruiseSpeed; //TODO solve speed issue
+    private int cruiseSpeed;
     private int x;
     private int y;
     private String destination;
     private int order_id;
     private boolean in_harbor;
     private String harborName;
-    public int[][] path;
+    public int pathNumber;
     private Thread t;
 
     public Ship(String _name, int _maxWeight, int _currentWeight, int _maxSpeed, int _cruiseSpeed, int _x, int _y,
-            String _destination, int _order_id, boolean _in_harbor, String _harborName) {
+            String _destination, int _order_id, boolean _in_harbor, String _harborName, int _pathNumber) {
         this.name = _name;
         this.maxWeight = _maxWeight;
         this.currentWeight = _currentWeight;
@@ -28,6 +28,7 @@ class Ship implements Runnable {
         this.order_id = _order_id;
         this.in_harbor = _in_harbor;
         this.harborName = _harborName;
+        this.pathNumber = _pathNumber;
 
     }
 
@@ -122,26 +123,21 @@ class Ship implements Runnable {
     public void setHarborName(String harborName) {
         this.harborName = harborName;
     }
-    public void setPath(int[][] path){
-        this.path = path;
-    }
 
-    public int[][] getPath(){
-        return path;
-    }
     
-    public void run(){
-        try {
-            route(x, y, path, cruiseSpeed);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+    public void run() {
+        try{
+            route(x, y, pathNumber, cruiseSpeed);
+        }
+        catch(InterruptedException e){
+
         }
     }
 
 
 
-    public void route(int x, int y, int[][] path, int speed) throws InterruptedException {
-        
+    public void route(int x, int y, int pathNumber, int speed) throws InterruptedException {
+        int[][] path = Route.returnPath(pathNumber);
         if(in_harbor){
             for(int i=0; i<path.length; i++){
                 setIn_harbor(false);
