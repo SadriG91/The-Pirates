@@ -132,7 +132,7 @@ class Ship implements Runnable {
     }
 
     public void route(int x, int y, int pathNumber, int speed) throws InterruptedException {
-        int[][] path = Route.returnPah(pathNumber);
+        int[][] path = Route.returnPath(pathNumber);
         if (in_harbor) {
             for (int i = 0; i < path.length; i++) {
                 setIn_harbor(false);
