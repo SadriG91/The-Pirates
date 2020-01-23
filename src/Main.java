@@ -5,7 +5,6 @@ import java.sql.*;
 import java.util.Objects;
 
 public class Main {
-    private final Ship JC = null;
 
     public static void main(String[] args) throws SQLException {
         Connection conn = Database.createConnection();
@@ -20,7 +19,7 @@ public class Main {
         String myString7 = "select * from ships where name = 'CasablancaExpress'";
         String myString8 = "select * from ships where name = 'RotterdamGreen'";
         String myString9 = "select * from ships where name = 'HamburgSud'";
-        String myString10 = "select * from ships where name = 'OceanExpress'";
+        String myString10 = "select * from ships where name = 'OceansExpress'";
 
         Ship JC = (Ship) Database.createShip(stmt, myString1);
         Ship MR = (Ship) Database.createShip(stmt, myString2);
@@ -32,16 +31,26 @@ public class Main {
         Ship RG = (Ship) Database.createShip(stmt, myString8);
         Ship HS = (Ship) Database.createShip(stmt, myString9);
         Ship OE = (Ship) Database.createShip(stmt, myString10);
+        List<Object> shipList = new ArrayList<Object>();
 
-        JC.start();
-        boolean go = true;
-        while (go) {
-            JC.printInfo();
-            try {
-                Thread.sleep(1200);
-            } catch (Exception e) {
-                // TODO: handle exception
-                e.printStackTrace();
+        shipList.add(JC);
+        shipList.add(MR);
+        shipList.add(AS);
+        shipList.add(NE);
+        shipList.add(FE);
+        shipList.add(EG);
+        shipList.add(CE);
+        shipList.add(RG);
+        shipList.add(HS);
+        shipList.add(OE);
+
+        String shipChoice = Main.selectShip();
+
+        for (int i = 0; i < shipList.size(); i++) {
+            Ship object = (Ship) shipList.get(i);
+            if (object.getName().equals(shipChoice)) {
+                System.out.println("det funkade");
+                System.out.println(object);
             }
 
         }
