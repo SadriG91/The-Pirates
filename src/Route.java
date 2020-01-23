@@ -1,6 +1,22 @@
 public class Route {
 
         public static int[][] returnPath(int number) {
+                // 1 = AB
+                // 2 = BE
+                // 3 = ED
+                // 4 = DA
+                // 5 = AD
+                // 6 = BA
+                // 7 = EB
+                // 8 = DE
+                // 9 = AC
+                // 10 = CA
+                // 11 = BC
+                // 12 = CB
+                // 13 = EC
+                // 14 = CE
+                // 15 = DC
+                // 16 = CD
 
                 switch (number) {
                 case 1:
