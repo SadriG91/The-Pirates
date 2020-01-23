@@ -123,6 +123,14 @@ class Ship implements Runnable {
         this.harborName = harborName;
     }
 
+    public int getPathNumber() {
+        return pathNumber;
+    }
+
+    public void setPathNumber(int pathNumber) {
+        this.pathNumber = pathNumber;
+    }
+
     public void run() {
         try {
             route(x, y, pathNumber, cruiseSpeed);
