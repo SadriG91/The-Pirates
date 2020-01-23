@@ -131,7 +131,11 @@ class Ship implements Runnable {
     }
     
     public void run(){
-        route(x, y, path, speed);
+        try {
+            route(x, y, path, cruiseSpeed);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -146,7 +150,7 @@ class Ship implements Runnable {
                 Thread.sleep(speed); 
             } 
         } else {
-            for(int i=Route.getIndex(path, x, y); i<path.length; i++){
+            for(int i = (int) Route.getIndex(path, x, y); i<path.length; i++){
                 setIn_harbor(false);
                 setX(path[i][0]);
                 setY(path[i][1]);

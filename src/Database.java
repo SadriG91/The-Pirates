@@ -1,6 +1,5 @@
 import javax.swing.*;
 import java.sql.*;
-import java.util.Formatter;
 import java.util.Objects;
 
 public class Database {
@@ -68,19 +67,44 @@ public static Connection createConnection() {
 
 	}
 
-	private static void ResultSet(Statement myStatement, String myString) throws SQLException {
+	public static void ResultSet(Statement myStatement, String myString) throws SQLException {
 		ResultSet myRs = myStatement.executeQuery(myString);
-		ResultSetMetaData rsmd = myRs.getMetaData();
-		//int columnsNumber = rsmd.getColumnCount();
+		//ResultSetMetaData rsmd = myRs.getMetaData();
+		int rowNumber = myRs.getRow();
+		int count = 0;
 		while (myRs.next()) {
-			//for (int i = 1; i <= columnsNumber; i++) {
+			//for (int i = 1; i <= rowNumber; i++) {
 				//if (i > 1) System.out.print(",  ");
 				//String columnValue = myRs.getString(i);
 				//System.out.print(columnValue + " " + rsmd.getColumnName(i));
-				Ship._name = myRs.getString("name");
+				 String _name = myRs.getString("name");
+				int _maxWeight = myRs.getInt("maxWeight");
+				int _currentWeight = myRs.getInt("currentWeight");
+				int _maxSpeed= myRs.getInt("maxSpeed");
+				int _cruiseSpeed= myRs.getInt("cruiseSpeed");
+				int _x= myRs.getInt("position_X");
+				int _y= myRs.getInt("position_Y");
+				String _destination= myRs.getString("destination");
+				int _order_id= myRs.getInt("order_id");
+				boolean _in_harbor= myRs.getBoolean("in_harbor");
+				String _harborName= myRs.getString("harborName");
+				Ship myNewShip = new Ship(_name,_maxWeight,_currentWeight,_maxSpeed,_cruiseSpeed,_x,_y,_destination,_order_id,_in_harbor,_harborName);
+				System.out.println(myNewShip.getX());
+
+
+
+
 			}
 			//System.out.println("");
 		}
+
+		public void updateDatabase(Object myNewShip) throws SQLException {
+		String updateQuery = "update simulator.ships set position_x=?, position_y=?, currentWeight=?, order_id=?, in_harbor=?, harborName=? where name = ?";
+		PreparedStatement preparedStatement = createConnection().prepareStatement(updateQuery);
+		preparedStatement.setInt(1, myNewShip);
+		)
+		}
+
 
 
 
@@ -89,7 +113,7 @@ public static Connection createConnection() {
 		loginPassword();
 		createConnection();
 		statement("Select * from ships");
-		getShipInfo("'MotherRussia'");
+		//getShipInfo("'MotherRussia'");
 
 }
 
