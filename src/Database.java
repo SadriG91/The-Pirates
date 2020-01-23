@@ -77,7 +77,7 @@ public static Connection createConnection() {
 				//if (i > 1) System.out.print(",  ");
 				//String columnValue = myRs.getString(i);
 				//System.out.print(columnValue + " " + rsmd.getColumnName(i));
-				Ship._name = myRs.getString("name");
+				//Ship._name = myRs.getString("name");
 			}
 			//System.out.println("");
 		}
