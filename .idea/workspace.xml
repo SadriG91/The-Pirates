@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="01134683-0cb1-4879-88ac-24ac290f3ab5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/The-Pirates/Database.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/The-Pirates/Database.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/The-Pirates/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/The-Pirates/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/The-Pirates/Route.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/The-Pirates/Route.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/The-Pirates/Ship.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/The-Pirates/Ship.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Route.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Route.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Ship.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ship.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
