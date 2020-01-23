@@ -5,10 +5,9 @@ import java.sql.*;
 import java.util.Objects;
 
 public class Main {
-    boolean exit;
+    private final Ship JC = null;
 
     public static void main(String[] args) throws SQLException {
-
         Connection conn = Database.createConnection();
         Statement stmt = conn.createStatement();
 
@@ -34,8 +33,18 @@ public class Main {
         Ship HS = (Ship) Database.createShip(stmt, myString9);
         Ship OE = (Ship) Database.createShip(stmt, myString10);
 
-        Main main = new Main();
-        main.runMenu();
+        JC.start();
+        boolean go = true;
+        while (go) {
+            JC.printInfo();
+            try {
+                Thread.sleep(1200);
+            } catch (Exception e) {
+                // TODO: handle exception
+                e.printStackTrace();
+            }
+
+        }
 
     }
 
@@ -48,13 +57,13 @@ public class Main {
         }
     }
 
-    private void printHeader() {
+    public void printHeader() {
         System.out.println("+-----------------------------------+");
         System.out.println("|          Welcome operator!        |");
         System.out.println("+-----------------------------------+");
     }
 
-    private void printMenu() {
+    public void printMenu() {
         System.out.println("\nMake your selection");
         System.out.println("[1] Ship");
         System.out.println("[2] Order");
@@ -63,7 +72,7 @@ public class Main {
         System.out.println("[0] Exit");
     }
 
-    private int getInput() {
+    public int getInput() {
         Scanner kb = new Scanner(System.in);
         int choice = -1;
         while (choice < 0 || choice > 4) {
@@ -77,14 +86,24 @@ public class Main {
         return choice;
     }
 
-    private void performAction(int choice) {
+    public String getInput2() {
+        Scanner kb = new Scanner(System.in);
+        String choice;
+
+        System.out.print("\nEnter your choice: ");
+        choice = kb.nextLine();
+
+        return choice;
+    }
+
+    public void performAction(int choice) {
         switch (choice) {
         case 0:
             exit = true;
             System.out.println("Thank your for using our simulator");
             break;
         case 1:
-            // Ship();
+
             break;
         case 2:
             // Order();

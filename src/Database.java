@@ -27,8 +27,7 @@ public class Database {
 	public static Connection createConnection() {
 		// boolean connected ;
 		try {
-			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/simulator", "username",
-					"password");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/simulator", "root", "Memis6991");
 			return conn;
 
 		} catch (SQLException e) {

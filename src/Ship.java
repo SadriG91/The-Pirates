@@ -1,5 +1,4 @@
 
-
 class Ship implements Runnable {
     final private String name;
     final private int maxWeight;
@@ -124,46 +123,41 @@ class Ship implements Runnable {
         this.harborName = harborName;
     }
 
-    
     public void run() {
-        try{
-            route(x, y, pathNumber, cruiseSpeed);
-        }
-        catch(InterruptedException e){
+        try {
+            route(x, y, 1, 1000);
+        } catch (InterruptedException e) {
 
         }
     }
-
-
 
     public void route(int x, int y, int pathNumber, int speed) throws InterruptedException {
         int[][] path = Route.returnPath(pathNumber);
-        if(in_harbor){
-            for(int i=0; i<path.length; i++){
+        if (in_harbor) {
+            for (int i = 0; i < path.length; i++) {
                 setIn_harbor(false);
                 setX(path[i][0]);
                 setY(path[i][1]);
-                Thread.sleep(speed); 
-            } 
+                Thread.sleep(speed);
+            }
         } else {
-            for(int i = (int) Route.getIndex(path, x, y); i<path.length; i++){
+            for (int i = (int) Route.getIndex(path, x, y); i < path.length; i++) {
                 setIn_harbor(false);
                 setX(path[i][0]);
                 setY(path[i][1]);
-                Thread.sleep(speed); 
+                Thread.sleep(speed);
             }
             setIn_harbor(true);
 
-
         }
-            
-        
+
     }
-    public void start () {
-        System.out.println(name + " leave harbour." );
+
+    public void start() {
+        System.out.println(name + " leave harbour.");
         if (t == null) {
-           t = new Thread (this, name);
-           t.start ();
+            t = new Thread(this, name);
+            t.start();
         }
     }
 
