@@ -66,25 +66,31 @@ public class Main {
             RG.printInfo();
             HS.printInfo();
             OE.printInfo();
-            try {Thread.sleep(1200);} catch (Exception e) {e.printStackTrace();} }
+            try {
+                Thread.sleep(1200);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
 
-    }
+
+
+
         List<Object> shipList = new ArrayList<Object>();
 
-        shipList.add(JC);
-        shipList.add(MR);
-        shipList.add(AS);
-        shipList.add(NE);
-        shipList.add(FE);
-        shipList.add(EG);
-        shipList.add(CE);
-        shipList.add(RG);
-        shipList.add(HS);
-        shipList.add(OE);
+            shipList.add(JC);
+            shipList.add(MR);
+            shipList.add(AS);
+            shipList.add(NE);
+            shipList.add(FE);
+            shipList.add(EG);
+            shipList.add(CE);
+            shipList.add(RG);
+            shipList.add(HS);
+            shipList.add(OE);
 
         String shipChoice = Main.selectShip();
-
-        for (int i = 0; i < shipList.size(); i++) {
+        for (int i = 0; i<shipList.size(); i++){
             Ship object = (Ship) shipList.get(i);
             if (object.getName().equals(shipChoice)) {
                 System.out.println("det funkade");
@@ -93,7 +99,7 @@ public class Main {
 
         }
 
-    }
+}
 
     public static String selectShip() {
         Scanner kb = new Scanner(System.in);
