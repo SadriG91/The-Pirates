@@ -1,16 +1,18 @@
-import java.util.Scanner;
-import javax.swing.*;
-import com.mysql.jdbc.ResultSetImpl;
-import java.sql.*;
-import java.util.Objects;
-import java.util.List;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Scanner;
 
 public class Main {
 
+    private boolean exit;
+
     public static void main(String[] args) throws SQLException {
         Connection conn = Database.createConnection();
-        Statement stmt = conn.createStatement();
+        Statement stmt = Objects.requireNonNull(conn).createStatement();
 
         String myString1 = "select * from ships where name = 'JonssonCargo'";
         String myString2 = "select * from ships where name = 'MotherRussia'";
@@ -43,16 +45,6 @@ public class Main {
         Objects.requireNonNull(HS).setPathNumber(9);
         Ship OE = (Ship) Database.createShip(stmt, myString10);
         Objects.requireNonNull(OE).setPathNumber(10);
-        shipList.add(JC);
-        shipList.add(MR);
-        shipList.add(AS);
-        shipList.add(NE);
-        shipList.add(FE);
-        shipList.add(EG);
-        shipList.add(CE);
-        shipList.add(RG);
-        shipList.add(HS);
-        shipList.add(OE);
         JC.start();
         MR.start();
         AS.start();
@@ -64,87 +56,68 @@ public class Main {
         HS.start();
         OE.start();
 
-        boolean run = true;
-        while (run) {
-            Scanner userInput = new Scanner(System.in);
-            String shipChoice = Main.selectShip();
-            System.out.println("enter 1 for simple console print for selected ship or 2 for GUI");
+        List<String> shipList = new ArrayList<String>();// Creating arraylist
+        shipList.add(JC.getName());
+        shipList.add(MR.getName());
+        shipList.add(AS.getName());
+        shipList.add(NE.getName());
+        shipList.add(FE.getName());
+        shipList.add(EG.getName());
+        shipList.add(CE.getName());
+        shipList.add(RG.getName());
+        shipList.add(HS.getName());
+        shipList.add(OE.getName());
 
-            int choice = userInput.nextInt();
+        checkShipName(JC, MR, AS, NE, FE, EG, CE, RG, HS, OE, shipList);
+        checkShipName(JC, MR, AS, NE, FE, EG, CE, RG, HS, OE, shipList);
 
-            switch (choice) {
-            case 1:
-                for (int i = 0; i < shipList.size(); i++) {
-                    Ship object = (Ship) shipList.get(i);
-                    if (object.getName().equals(shipChoice)) {
-                        System.out.println("det funkade");
-                        System.out.println(object);
-                        object.printInfo();
-                    }
-                }
+    }
 
-            case 2:
-                Ship object1 = (Ship) shipList.get(0);
-                int x1 = object1.getX();
-                int y1 = object1.getY();
-                Ship object2 = (Ship) shipList.get(1);
-                int x2 = object2.getX();
-                int y2 = object2.getY();
-                Ship object3 = (Ship) shipList.get(2);
-                int x3 = object3.getX();
-                int y3 = object3.getY();
-                Ship object4 = (Ship) shipList.get(3);
-                int x4 = object4.getX();
-                int y4 = object4.getY();
-                Ship object5 = (Ship) shipList.get(4);
-                int x5 = object5.getX();
-                int y5 = object5.getY();
-                Ship object6 = (Ship) shipList.get(5);
-                int x6 = object6.getX();
-                int y6 = object6.getY();
-                Ship object7 = (Ship) shipList.get(6);
-                int x7 = object7.getX();
-                int y7 = object7.getY();
-                Ship object8 = (Ship) shipList.get(7);
-                int x8 = object8.getX();
-                int y8 = object8.getY();
-                Ship object9 = (Ship) shipList.get(8);
-                int x9 = object9.getX();
-                int y9 = object9.getY();
-                Ship object10 = (Ship) shipList.get(9);
-                int x10 = object10.getX();
-                int y10 = object10.getY();
+    private static void checkShipName(Ship JC, Ship MR, Ship AS, Ship NE, Ship FE, Ship EG, Ship CE, Ship RG, Ship HS,
+            Ship OE, List<String> shipList) {
+        String shipChoice = Main.selectShip();
+        for (String s : shipList) {
+            // shipList.get(i);
+            if (s.equals(shipChoice)) {
+                System.out.println(s);
+                System.out.println("det funkade");
 
-                for (int i = 0; i < shipList.size(); i++) {
-                    Ship object = (Ship) shipList.get(i);
-                    if (object.getName().equals(shipChoice)) {
-                        String name = object.getName();
-                        String lastHarbor = object.getHarborName();
-                        String destination = object.getDestination();
-                        int currentWeight = object.getCurrentWeight();
-                        int cruiseSpeed = object.getCruiseSpeed();
-                        DialogWindow.Sea(name, lastHarbor, destination, currentWeight, cruiseSpeed, x1, y1, x2, y2, x3,
-                                y3, x4, y4, x5, y5, x6, y6, x7, y7, x8, y8, x9, y9, x10, y10);
-
-                    }
-
+                if (s.equals(JC.getName())) {
+                    System.out.println(JC.getX() + "," + JC.getY());
+                } else if (s.equals(MR.getName())) {
+                    System.out.println(MR.getX() + "," + MR.getY());
+                } else if (s.equals(AS.getName())) {
+                    System.out.println(AS.getX() + "," + AS.getY());
+                } else if (s.equals(NE.getName())) {
+                    System.out.println(AS.getX() + "," + AS.getY());
+                } else if (s.equals(FE.getName())) {
+                    System.out.println(FE.getX() + "," + FE.getY());
+                } else if (s.equals(EG.getName())) {
+                    System.out.println(EG.getX() + "," + EG.getY());
+                } else if (s.equals(CE.getName())) {
+                    System.out.println(CE.getX() + "," + CE.getY());
+                } else if (s.equals(RG.getName())) {
+                    System.out.println(RG.getX() + "," + RG.getY());
+                } else if (s.equals(HS.getName())) {
+                    System.out.println(HS.getX() + "," + HS.getY());
+                } else if (s.equals(OE.getName())) {
+                    System.out.println(OE.getX() + "," + OE.getY());
                 }
 
             }
         }
-
     }
 
     public static String selectShip() {
         Scanner kb = new Scanner(System.in);
         System.out.println("enter shipname:");
-        String shipChoice = kb.nextLine();
-        return shipChoice;
+        return kb.nextLine();
 
     }
 
     public void runMenu() {
         printHeader();
+        // boolean exit = false;
         while (!exit) {
             printMenu();
             int choice = getInput();
