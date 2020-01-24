@@ -14,8 +14,16 @@ class Ship implements Runnable {
     public int pathNumber;
     private Thread t;
 
+    public int getPathNumber() {
+        return pathNumber;
+    }
+
+    public void setPathNumber(int pathNumber) {
+        this.pathNumber = pathNumber;
+    }
+
     public Ship(String _name, int _maxWeight, int _currentWeight, int _maxSpeed, int _cruiseSpeed, int _x, int _y,
-            String _destination, int _order_id, boolean _in_harbor, String _harborName, int _pathNumber) {
+                String _destination, int _order_id, boolean _in_harbor, String _harborName, int _pathNumber) {
         this.name = _name;
         this.maxWeight = _maxWeight;
         this.currentWeight = _currentWeight;
@@ -149,7 +157,7 @@ class Ship implements Runnable {
                 Thread.sleep(speed);
             }
         } else {
-            for (int i = (int) Route.getIndex(path, x, y); i < path.length; i++) {
+            for (int i = Route.getIndex(path, x, y); i < path.length; i++) {
                 setIn_harbor(false);
                 setX(path[i][0]);
                 setY(path[i][1]);

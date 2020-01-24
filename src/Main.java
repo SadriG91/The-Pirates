@@ -1,12 +1,14 @@
-import java.util.Scanner;
-import javax.swing.*;
-import com.mysql.jdbc.ResultSetImpl;
-import java.sql.*;
-import java.util.Objects;
-import java.util.List;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Scanner;
 
 public class Main {
+
+    private boolean exit;
 
     public static void main(String[] args) throws SQLException {
         Connection conn = Database.createConnection();
@@ -55,64 +57,81 @@ public class Main {
         HS.start();
         OE.start();
 
-        boolean go = true;
-        while (go) {
-            MR.printInfo();
-            AS.printInfo();
-            NE.printInfo();
-            FE.printInfo();
-            EG.printInfo();
-            CE.printInfo();
-            RG.printInfo();
-            HS.printInfo();
-            OE.printInfo();
-            try {
-                Thread.sleep(1200);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
 
 
+        List<String> shipList=new ArrayList<String>();//Creating arraylist
+        shipList.add(JC.getName());
+        shipList.add(MR.getName());
+        shipList.add(AS.getName());
+        shipList.add(NE.getName());
+        shipList.add(FE.getName());
+        shipList.add(EG.getName());
+        shipList.add(CE.getName());
+        shipList.add(RG.getName());
+        shipList.add(HS.getName());
+        shipList.add(OE.getName());
 
 
-        List<Object> shipList = new ArrayList<Object>();
+        checkShipName(JC, MR, AS, NE, FE, EG, CE, RG, HS, OE, shipList);
+        checkShipName(JC, MR, AS, NE, FE, EG, CE, RG, HS, OE, shipList);
 
-            shipList.add(JC);
-            shipList.add(MR);
-            shipList.add(AS);
-            shipList.add(NE);
-            shipList.add(FE);
-            shipList.add(EG);
-            shipList.add(CE);
-            shipList.add(RG);
-            shipList.add(HS);
-            shipList.add(OE);
+    }
 
+    private static void checkShipName(Ship JC, Ship MR, Ship AS, Ship NE, Ship FE, Ship EG, Ship CE, Ship RG, Ship HS, Ship OE, List<String> shipList) {
         String shipChoice = Main.selectShip();
-        for (int i = 0; i<shipList.size(); i++){
-            Ship object = (Ship) shipList.get(i);
-            if (object.getName().equals(shipChoice)) {
+        for (String s : shipList) {
+            //shipList.get(i);
+            if (s.equals(shipChoice)) {
+                System.out.println(s);
                 System.out.println("det funkade");
-                System.out.println(object);
+
+                if(s.equals(JC.getName())) {
+                    System.out.println(JC.getX()+","+JC.getY());
+                }
+                else if(s.equals(MR.getName())) {
+                    System.out.println(MR.getX()+","+MR.getY());
+                }
+                else if(s.equals(AS.getName())) {
+                    System.out.println(AS.getX()+","+AS.getY());
+                }
+                else if(s.equals(NE.getName())) {
+                    System.out.println(AS.getX()+","+AS.getY());
+                }
+                else if(s.equals(FE.getName())) {
+                    System.out.println(FE.getX()+","+FE.getY());
+                }
+                else if(s.equals(EG.getName())) {
+                    System.out.println(EG.getX()+","+EG.getY());
+                }
+                else if(s.equals(CE.getName())) {
+                    System.out.println(CE.getX()+","+CE.getY());
+                }
+                else if(s.equals(RG.getName())) {
+                    System.out.println(RG.getX()+","+RG.getY());
+                }
+                else if(s.equals(HS.getName())) {
+                    System.out.println(HS.getX()+","+HS.getY());
+                }
+                else if(s.equals(OE.getName())) {
+                    System.out.println(OE.getX()+","+OE.getY());
+                }
+
             }
 
         }
-
-}
+    }
 
     public static String selectShip() {
         Scanner kb = new Scanner(System.in);
         System.out.println("enter shipname:");
-        String shipChoice = kb.nextLine();
-        return shipChoice;
+        return kb.nextLine();
 
     }
 
     public void runMenu() {
         printHeader();
         //boolean exit = false;
-        while (true) {
+        while (!exit) {
             printMenu();
             int choice = getInput();
             performAction(choice);
