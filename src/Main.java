@@ -11,6 +11,9 @@ public class Main {
     private boolean exit;
 
     public static void main(String[] args) throws SQLException {
+        Database.loginUsername(); // Kan tas bort tills presentationen men glöm inte att lägga in login info i database classen
+        Database.loginPassword();
+
         Connection conn = Database.createConnection();
         Statement stmt = Objects.requireNonNull(conn).createStatement();
 
@@ -72,7 +75,7 @@ public class Main {
         shipList.add(OE.getName());
 
 
-        checkShipName(JC, MR, AS, NE, FE, EG, CE, RG, HS, OE, shipList);
+        checkShipName(JC, MR, AS, NE, FE, EG, CE, RG, HS, OE, shipList);//Kalla på den här funktionen när du vill få en båts X,Y
         checkShipName(JC, MR, AS, NE, FE, EG, CE, RG, HS, OE, shipList);
 
     }
