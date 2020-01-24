@@ -23,7 +23,7 @@ class Ship implements Runnable {
     }
 
     public Ship(String _name, int _maxWeight, int _currentWeight, int _maxSpeed, int _cruiseSpeed, int _x, int _y,
-                String _destination, int _order_id, boolean _in_harbor, String _harborName, int _pathNumber) {
+            String _destination, int _order_id, boolean _in_harbor, String _harborName, int _pathNumber) {
         this.name = _name;
         this.maxWeight = _maxWeight;
         this.currentWeight = _currentWeight;
@@ -38,8 +38,6 @@ class Ship implements Runnable {
         this.pathNumber = _pathNumber;
 
     }
-
-
 
     public void printInfo() {
         String info = "Name: " + this.getName() + " position: " + this.getX() + "," + this.getY() + " currentload: "
@@ -135,7 +133,7 @@ class Ship implements Runnable {
 
     public void run() {
         try {
-            route(x, y, pathNumber, cruiseSpeed);
+            route(this.x, this.y, pathNumber, cruiseSpeed);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

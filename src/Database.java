@@ -3,22 +3,26 @@ import java.sql.*;
 
 public class Database {
 
-	  private static String username; private static String password;
+	private static String username;
+	private static String password;
 
-	  static void loginUsername() { username = JOptionPane.showInputDialog(null,
-	  "Enter username", "Username", JOptionPane.QUESTION_MESSAGE);
-	  }
+	static void loginUsername() {
+		username = JOptionPane.showInputDialog(null, "Enter username", "Username", JOptionPane.QUESTION_MESSAGE);
+	}
 
-	  public static void loginPassword() {
-	  JPasswordField passwordField = new JPasswordField(10); passwordField.setEchoChar('*'); JPanel myPanel = new
-	  JPanel(); myPanel.add(new JLabel("Password: "));
-	  myPanel.add(passwordField);
+	public static void loginPassword() {
+		JPasswordField passwordField = new JPasswordField(10);
+		passwordField.setEchoChar('*');
+		JPanel myPanel = new JPanel();
+		myPanel.add(new JLabel("Password: "));
+		myPanel.add(passwordField);
 
-	  int result = JOptionPane.showConfirmDialog(null, myPanel, "Enter Password", JOptionPane.OK_CANCEL_OPTION);
-	  if (result == JOptionPane.OK_OPTION) {
-	  password = String.valueOf(passwordField.getPassword());}
+		int result = JOptionPane.showConfirmDialog(null, myPanel, "Enter Password", JOptionPane.OK_CANCEL_OPTION);
+		if (result == JOptionPane.OK_OPTION) {
+			password = String.valueOf(passwordField.getPassword());
+		}
 
-	 }
+	}
 
 	public static Connection createConnection() {
 		// boolean connected ;
@@ -31,6 +35,14 @@ public class Database {
 		}
 		// connected = true;
 		return null;
+
+	}
+
+	public static void storeData(Statement myStatement, int x, int y, String name) throws SQLException {
+		String query = "UPDATE Ships SET position_X= " + x + ", position_Y= " + y + " WHERE name = '" + name + "'";
+		System.out.println(query);
+
+		myStatement.execute(query);
 
 	}
 
